@@ -17,11 +17,14 @@ def encoder(user_pwd):
         result = result + str(my_array) 
     return(result)
 
-def decoder(encoder):
-    my_dict = {"0":3, "1":4, "2":5, "3":6, "4":7, "5":8, "6":9, "7":0, "8":1, "9":2 }
 
-
-
+# Geoffrey Clark's decoder
+def decoder(encoded_password):
+    decoded_password = ""
+    for digit in encoded_password:
+        unshifted_digit = str((int(digit)-3) % 10)
+        decoded_password += unshifted_digit
+    return decoded_password
 
 
 def menu():
@@ -44,7 +47,8 @@ def menu():
 
             print("Your password has been encoded and stored!")
         elif user_choice == 2:
-            pass
+            decodedvalue = decoder(encoderValue)
+            print(f"The encoded password is {encoderValue}, and the original password is {decodedvalue}.")
 
         elif user_choice == 3:
             break
